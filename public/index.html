@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Estudiantes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-graduation-cap"></i> Gestión de Estudiantes</h1>
+            <p>Sistema completo de administración estudiantil</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Formulario para agregar/editar estudiantes -->
+            <section class="form-section">
+                <div class="form-container">
+                    <h2 id="form-title">
+                        <i class="fas fa-user-plus"></i> Agregar Nuevo Estudiante
+                    </h2>
+                    <form id="student-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="nombre">
+                                    <i class="fas fa-user"></i> Nombre
+                                </label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido">
+                                    <i class="fas fa-user"></i> Apellido
+                                </label>
+                                <input type="text" id="apellido" name="apellido" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i> Email
+                                </label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edad">
+                                    <i class="fas fa-calendar-alt"></i> Edad
+                                </label>
+                                <input type="number" id="edad" name="edad" min="16" max="100" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="carrera">
+                                    <i class="fas fa-book"></i> Carrera
+                                </label>
+                                <select id="carrera" name="carrera" required>
+                                    <option value="">Seleccionar carrera</option>
+                                    <option value="Ingeniería en Sistemas">Ingeniería en Sistemas</option>
+                                    <option value="Ingeniería Civil">Ingeniería Civil</option>
+                                    <option value="Ingeniería Industrial">Ingeniería Industrial</option>
+                                    <option value="Ingeniería en Computación">Ingeniería en Computación</option>
+                                    <option value="Licenciatura en Administración">Licenciatura en Administración</option>
+                                    <option value="Licenciatura en Psicología">Licenciatura en Psicología</option>
+                                    <option value="Licenciatura en Derecho">Licenciatura en Derecho</option>
+                                    <option value="Licenciatura en Medicina">Licenciatura en Medicina</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Guardar
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="cancelForm()">
+                                <i class="fas fa-times"></i> Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Sección de búsqueda -->
+            <section class="search-section">
+                <div class="search-container">
+                    <h2><i class="fas fa-search"></i> Buscar Estudiantes</h2>
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Buscar por nombre, apellido o email...">
+                        <button class="btn btn-search" onclick="searchStudents()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lista de estudiantes -->
+            <section class="students-section">
+                <div class="students-header">
+                    <h2><i class="fas fa-users"></i> Lista de Estudiantes</h2>
+                    <button class="btn btn-refresh" onclick="loadStudents()">
+                        <i class="fas fa-sync-alt"></i> Actualizar
+                    </button>
+                </div>
+                <div class="students-container">
+                    <div id="students-grid" class="students-grid">
+                        <!-- Los estudiantes se cargarán aquí -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal para confirmar eliminación -->
+        <div id="delete-modal" class="modal">
+            <div class="modal-content">
+                <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Eliminación</h3>
+                <p>¿Estás seguro de que deseas eliminar este estudiante?</p>
+                <div class="modal-buttons">
+                    <button class="btn btn-danger" onclick="confirmDelete()">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </button>
+                    <button class="btn btn-secondary" onclick="closeModal()">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notificaciones -->
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
