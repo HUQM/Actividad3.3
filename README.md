@@ -5,13 +5,16 @@ Una aplicación web completa desarrollada en Node.js con Express y MySQL para ge
 ## 🚀 Características
 
 - ✅ **Consultar todos los registros** - Vista general de estudiantes
-- ✅ **Consultar registros individuales** - Detalles específicos de cada estudiante
+- ✅ **Consultar registros individuales** - Modal detallado con información completa
 - ✅ **Editar registros** - Actualizar información de estudiantes
 - ✅ **Eliminar registros** - Borrar estudiantes con confirmación
 - ✅ **Agregar registros** - Registrar nuevos estudiantes
+- 👁️ **Vista individual** - Modal con detalles completos de cada estudiante
 - 🔍 **Búsqueda en tiempo real** - Filtrar estudiantes por nombre, email, etc.
 - 📱 **Interfaz responsive** - Funciona perfectamente en móviles y tablets
 - 🎨 **Diseño moderno** - Interfaz atractiva con animaciones suaves
+- ⭐ **Calificaciones** - Sistema de calificaciones con estrellas
+- 🏆 **Estados** - Indicadores de estado activo/inactivo
 
 ## 📋 Requisitos Previos
 
@@ -81,10 +84,20 @@ Abre tu navegador y visita: `http://localhost:3000`
 2. Haz clic en "Guardar"
 3. El estudiante aparecerá en la lista automáticamente
 
+### 👁️ Ver Detalles de Estudiante
+1. Haz clic en el botón "Ver" en la tarjeta del estudiante
+2. Se abrirá un modal con información detallada:
+   - Perfil completo con avatar
+   - Información personal completa
+   - Estado y calificaciones
+   - Fecha de registro detallada
+3. Desde el modal puedes editar directamente
+
 ### ✏️ Editar Estudiante
 1. Haz clic en el botón "Editar" en la tarjeta del estudiante
-2. El formulario se llenará con los datos actuales
-3. Modifica los campos necesarios y haz clic en "Guardar"
+2. O haz clic en "Editar" desde el modal de detalles
+3. El formulario se llenará con los datos actuales
+4. Modifica los campos necesarios y haz clic en "Guardar"
 
 ### 🗑️ Eliminar Estudiante
 1. Haz clic en el botón "Eliminar" en la tarjeta del estudiante
@@ -215,6 +228,10 @@ Error: ER_BAD_DB_ERROR: Unknown database 'gestion_estudiantes'
 - **Responsive design** - Adaptable a cualquier pantalla
 - **Búsqueda instantánea** - Filtros en tiempo real
 - **Confirmación de eliminación** - Evita borrados accidentales
+- **Vista individual detallada** - Modal con información completa
+- **Avatares personalizados** - Iconos distintivos para cada estudiante
+- **Sistema de calificaciones** - Visualización con estrellas
+- **Indicadores de estado** - Estados activo/inactivo visualmente claros
 
 ## 🤝 Contribuir
 

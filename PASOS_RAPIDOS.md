@@ -98,11 +98,14 @@ Servidor ejecutándose en http://localhost:3000
 
 - ✅ Agregar estudiantes
 - ✅ Consultar todos los estudiantes
+- ✅ **Ver detalles individuales** - Modal con información completa
 - ✅ Editar estudiantes
 - ✅ Eliminar estudiantes
 - ✅ Búsqueda en tiempo real
 - ✅ Interfaz responsive
 - ✅ Notificaciones visuales
+- ⭐ Sistema de calificaciones con estrellas
+- 🏆 Indicadores de estado activo/inactivo
 
 ---
 

@@ -2,12 +2,14 @@
 let students = [];
 let editingStudent = null;
 let studentToDelete = null;
+let currentStudent = null;
 
 // Elementos del DOM
 const studentForm = document.getElementById('student-form');
 const formTitle = document.getElementById('form-title');
 const studentsGrid = document.getElementById('students-grid');
 const deleteModal = document.getElementById('delete-modal');
+const detailsModal = document.getElementById('details-modal');
 const notification = document.getElementById('notification');
 const searchInput = document.getElementById('search-input');
 
@@ -32,10 +34,18 @@ function setupEventListeners() {
         }
     });
     
-    // Tecla Escape para cerrar modal
+    // Cerrar modal de detalles al hacer clic fuera
+    detailsModal.addEventListener('click', function(e) {
+        if (e.target === detailsModal) {
+            closeDetailsModal();
+        }
+    });
+    
+    // Tecla Escape para cerrar modales
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeModal();
+            closeDetailsModal();
         }
     });
 }
@@ -82,6 +92,9 @@ function displayStudents(studentsToShow) {
                 <p><i class="fas fa-clock"></i> Registrado: ${formatDate(student.fecha_registro)}</p>
             </div>
             <div class="student-actions">
+                <button class="btn btn-view" onclick="viewStudent(${student.id})">
+                    <i class="fas fa-eye"></i> Ver
+                </button>
                 <button class="btn btn-edit" onclick="editStudent(${student.id})">
                     <i class="fas fa-edit"></i> Editar
                 </button>
@@ -289,6 +302,49 @@ function refreshStudents() {
     loadStudents();
 }
 
+// Ver detalles del estudiante
+async function viewStudent(id) {
+    try {
+        const response = await fetch(`/api/estudiantes/${id}`);
+        
+        if (!response.ok) {
+            throw new Error('Error al cargar datos del estudiante');
+        }
+        
+        const student = await response.json();
+        currentStudent = student;
+        
+        // Llenar el modal con los datos del estudiante
+        document.getElementById('detail-name').textContent = `${student.nombre} ${student.apellido}`;
+        document.getElementById('detail-career').textContent = student.carrera;
+        document.getElementById('detail-email').textContent = student.email;
+        document.getElementById('detail-age').textContent = `${student.edad} años`;
+        document.getElementById('detail-id').textContent = `#${student.id}`;
+        document.getElementById('detail-registration').textContent = formatDate(student.fecha_registro);
+        
+        // Mostrar el modal
+        detailsModal.style.display = 'block';
+        
+    } catch (error) {
+        console.error('Error:', error);
+        showNotification('Error al cargar datos del estudiante', 'error');
+    }
+}
+
+// Cerrar modal de detalles
+function closeDetailsModal() {
+    detailsModal.style.display = 'none';
+    currentStudent = null;
+}
+
+// Editar estudiante desde el modal de detalles
+function editStudentFromDetails() {
+    if (currentStudent) {
+        closeDetailsModal();
+        editStudent(currentStudent.id);
+    }
+}
+
 // Alias para compatibilidad con el HTML
 window.loadStudents = loadStudents;
 window.editStudent = editStudent;
@@ -296,4 +352,7 @@ window.deleteStudent = deleteStudent;
 window.confirmDelete = confirmDelete;
 window.closeModal = closeModal;
 window.cancelForm = cancelForm;
-window.searchStudents = searchStudents; 
+window.searchStudents = searchStudents;
+window.viewStudent = viewStudent;
+window.closeDetailsModal = closeDetailsModal;
+window.editStudentFromDetails = editStudentFromDetails; 
