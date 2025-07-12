@@ -16,11 +16,11 @@ app.use(express.static('public'));
 
 // Configuración de la conexión a MySQL para Railway
 const connection = mysql.createConnection({
-    host: process.env.DB_HOST || 'turntable.proxy.rlwy.net',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || 'WmPcVMFnCuYzVMEUxfHatyPSdNnbvCcL',
-    database: process.env.DB_NAME || 'railway',
-    port: process.env.DB_PORT || 41272,
+    host: 'turntable.proxy.rlwy.net',
+    user: 'root',
+    password: 'WmPcVMFnCuYzVMEUxfHatyPSdNnbvCcL',
+    database: 'railway',
+    port: 41272,
     ssl: {
         rejectUnauthorized: false
     },
